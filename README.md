@@ -77,11 +77,4 @@ npm install
 npm run dev
 ```
 The Dashboard will be available at `http://localhost:5173`.
-
-## Screenshots
-*(Add screenshots of the dashboard, customer profile, and prediction forms here)*
-
-## Future Improvements
-- Implement user authentication.
-- Add A/B testing frameworks for recommended actions.
-- Incorporate time-series forecasting for CLV.
+The application will be available at `http://localhost:5173`.

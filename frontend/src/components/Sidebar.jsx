@@ -32,6 +32,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
               <NavLink
                 to={item.path}
                 className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}
+                onClick={() => setIsOpen(false)}
               >
                 <item.icon size={18} className="mr-3" />
                 {item.name}

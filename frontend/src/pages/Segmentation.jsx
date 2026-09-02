@@ -13,11 +13,11 @@ const Quadrant = ({ title, count, type, onClick }) => {
   return (
     <div 
       onClick={onClick}
-      className={`dashboard-card p-8 flex flex-col justify-center items-center text-center cursor-pointer transition-all duration-300 border-2 ${colorClass}`}
+      className={`dashboard-card p-4 md:p-8 flex flex-col justify-center items-center text-center cursor-pointer transition-all duration-300 border-2 ${colorClass}`}
     >
-      <h3 className="text-xl font-bold mb-2">{title}</h3>
-      <p className="text-4xl font-black">{count.toLocaleString()}</p>
-      <p className="text-sm mt-2 opacity-80">customers</p>
+      <h3 className="text-sm md:text-xl font-bold mb-2 leading-tight">{title}</h3>
+      <p className="text-2xl md:text-4xl font-black">{count.toLocaleString()}</p>
+      <p className="text-xs md:text-sm mt-1 opacity-80">customers</p>
     </div>
   );
 };

@@ -152,7 +152,7 @@ const ChurnAnalysis = () => {
               <CartesianGrid strokeDasharray="3 3" stroke="#1E293B" horizontal={false} />
               <XAxis type="number" stroke="#64748B" tickLine={false} axisLine={false} />
               <YAxis type="category" dataKey="name" stroke="#94A3B8" tickLine={false} axisLine={false} width={80} />
-              <Tooltip cursor={{fill: '#1E293B'}} contentStyle={{backgroundColor: '#111827', borderColor: '#1E293B'}} />
+              <Tooltip cursor={{fill: '#1E293B'}} contentStyle={{backgroundColor: '#111827', borderColor: '#1E293B'}} itemStyle={{color: '#F8FAFC'}} />
               <Bar dataKey="count" radius={[0, 4, 4, 0]}>
                 {riskBarData.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={entry.fill} />

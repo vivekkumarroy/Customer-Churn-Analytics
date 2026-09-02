@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-bg: #0A192F;
+    --color-bg2: #112240;
+    --color-card: #112240;
+    --color-card-hover: #112240;
+    --color-border: #233554;
+    --color-accent1: #06B6D4;
+    --color-accent2: #8B5CF6;
+    --color-text1: #F8FAFC;
+    --color-text2: #CBD5E1;
+    --color-muted: #8892B0;
+    --color-high: #EF4444;
+    --color-medium: #F59E0B;
+    --color-low: #22C55E;
+  }
+
+  body {
+    @apply bg-theme-bg text-theme-text1 font-sans;
+    min-height: 100vh;
+    background-color: var(--color-bg);
+    color: var(--color-text1);
+  }
+
+  /* Modern scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-theme-bg;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-theme-border rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-theme-muted;
+  }
+}
+
+@layer components {
+  .dashboard-card {
+    @apply bg-theme-card border border-theme-border rounded-xl transition-all duration-200 shadow-sm;
+  }
+
+  .dashboard-card:hover {
+    @apply bg-theme-card-hover border-cyan-500/30 shadow-md transform -translate-y-0.5;
+  }
+
+  .nav-item {
+    @apply flex items-center px-4 py-2.5 rounded-lg text-theme-text2 font-medium transition-all duration-200 mb-1;
+  }
+
+  .nav-item:hover {
+    @apply bg-theme-bg2 text-theme-text1;
+  }
+
+  .nav-item.active {
+    @apply bg-cyan-500/10 text-theme-accent1 border border-cyan-500/20 shadow-[inset_4px_0_0_0_#06B6D4];
+  }
+
+  .input-search {
+    @apply bg-theme-bg2 border border-theme-border rounded-lg text-theme-text1 px-4 py-2 text-sm focus:outline-none focus:border-theme-accent1 focus:ring-1 focus:ring-theme-accent1 transition-all w-full;
+  }
+
+  .input-form {
+    @apply bg-theme-bg border border-theme-border rounded-lg text-theme-text1 px-4 py-2 focus:outline-none focus:border-theme-accent1 focus:ring-1 focus:ring-theme-accent1 transition-all w-full;
+  }
+
+  .btn-primary {
+    @apply bg-theme-accent1 text-white font-semibold py-2 px-6 rounded-lg transition-all active:scale-95 flex items-center justify-center gap-2;
+  }
+
+  .badge-high {
+    @apply inline-block whitespace-nowrap bg-red-500/10 text-red-500 border border-red-500/20 px-2.5 py-0.5 rounded-full text-xs font-bold tracking-wider;
+  }
+
+  .badge-medium {
+    @apply inline-block whitespace-nowrap bg-amber-500/10 text-amber-500 border border-amber-500/20 px-2.5 py-0.5 rounded-full text-xs font-bold tracking-wider;
+  }
+
+  .badge-low {
+    @apply inline-block whitespace-nowrap bg-green-500/10 text-green-500 border border-green-500/20 px-2.5 py-0.5 rounded-full text-xs font-bold tracking-wider;
+  }
+
+  .table-header {
+    @apply bg-theme-bg2 border-b border-theme-border text-theme-text2 text-xs font-semibold uppercase tracking-wider px-4 py-3 text-left;
+  }
+
+  .table-cell {
+    @apply px-4 py-4 border-b border-theme-border text-sm text-theme-text1;
+  }
+
+  .table-row {
+    @apply hover:bg-theme-card-hover transition-colors;
+  }
+}

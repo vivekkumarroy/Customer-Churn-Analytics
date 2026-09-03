@@ -6,7 +6,7 @@ export const MetricCard = ({ title, value, subtitle, icon: Icon }) => (
       {Icon && <Icon size={120} strokeWidth={1} />}
     </div>
     <div className="flex justify-between items-start mb-6 relative z-10 gap-2">
-      <div className="flex-1">
+      <div className="flex-1 min-w-0">
         <p className="text-[10px] md:text-xs font-bold text-theme-muted uppercase tracking-widest mb-2 leading-tight">{title}</p>
         <h3 className="text-2xl lg:text-3xl xl:text-4xl font-black text-theme-text1 leading-none tracking-tight break-words" title={String(value)}>{value}</h3>
       </div>

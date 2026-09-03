@@ -114,7 +114,7 @@ const Dashboard = () => {
         <MetricCard title="Total Revenue" value={Intl.NumberFormat('en-IN', { notation: 'compact', style: 'currency', currency: 'INR', maximumFractionDigits: 1 }).format(metrics.total_revenue)} subtitle="Across all customers" icon={IndianRupee} />
         <MetricCard title="Avg Churn Rate" value={`${(metrics.churn_rate * 100).toFixed(1)}%`} subtitle="Predicted risk across base" icon={Activity} />
         <MetricCard title="High-Risk Customers" value={metrics.high_risk_customers.toLocaleString()} subtitle="Require immediate attention" icon={AlertTriangle} />
-        <MetricCard title="High-Value Customers" value={metrics.high_value_customers.toLocaleString()} subtitle="Top revenue contributors" icon={ShieldCheck} />
+        <MetricCard title="High-Value Customers" value={metrics.high_value_customers.toLocaleString()} subtitle="Top revenue contributors" icon={ShieldCheck} className="sm:col-span-2 sm:w-[calc(50%-0.5rem)] sm:mx-auto lg:col-span-1 lg:w-full lg:mx-0" />
       </div>
 
       {/* Charts Grid */}

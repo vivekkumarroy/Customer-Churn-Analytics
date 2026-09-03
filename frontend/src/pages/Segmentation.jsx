@@ -5,6 +5,7 @@ import api from '../api';
 const Quadrant = ({ title, count, type, onClick }) => {
   // Determine styling based on quadrant type
   let description = '';
+  let colorClass = '';
   if (type === 'priority') {
     colorClass = 'text-theme-high border-theme-high hover:bg-theme-high/5 hover:shadow-[0_0_30px_rgba(239,68,68,0.15)]';
     description = 'High Value + High Risk';

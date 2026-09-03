@@ -25,8 +25,8 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 p-4">
-        <ul className="space-y-1">
+      <nav className="flex-1 p-4 mt-2">
+        <ul className="space-y-2">
           {navItems.map((item) => (
             <li key={item.name}>
               <NavLink
@@ -34,7 +34,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                 className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}
                 onClick={() => setIsOpen(false)}
               >
-                <item.icon size={18} className="mr-3" />
+                <item.icon size={20} className="mr-3" />
                 {item.name}
               </NavLink>
             </li>
@@ -44,8 +44,8 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
 
       {/* Footer Status */}
       <div className="p-6 border-t border-theme-border">
-        <div className="flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full bg-theme-accent1 animate-pulse" />
+        <div className="flex items-center gap-3">
+          <div className="w-2.5 h-2.5 rounded-full bg-theme-low shadow-[0_0_8px_var(--color-low)] animate-pulse" />
           <span className="text-xs font-semibold text-theme-text2 tracking-wider">ML MODEL ACTIVE</span>
         </div>
       </div>

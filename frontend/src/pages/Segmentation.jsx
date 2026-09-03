@@ -4,20 +4,35 @@ import api from '../api';
 
 const Quadrant = ({ title, count, type, onClick }) => {
   // Determine styling based on quadrant type
-  let colorClass = '';
-  if (type === 'priority') colorClass = 'text-theme-high border-theme-high hover:bg-theme-high/10';
-  if (type === 'vip') colorClass = 'text-theme-low border-theme-low hover:bg-theme-low/10';
-  if (type === 'automated') colorClass = 'text-theme-medium border-theme-medium hover:bg-theme-medium/10';
-  if (type === 'normal') colorClass = 'text-theme-accent1 border-theme-accent1 hover:bg-theme-accent1/10';
+  let description = '';
+  if (type === 'priority') {
+    colorClass = 'text-theme-high border-theme-high hover:bg-theme-high/5 hover:shadow-[0_0_30px_rgba(239,68,68,0.15)]';
+    description = 'High Value + High Risk';
+  }
+  if (type === 'vip') {
+    colorClass = 'text-theme-low border-theme-low hover:bg-theme-low/5 hover:shadow-[0_0_30px_rgba(34,197,94,0.15)]';
+    description = 'High Value + Low Risk';
+  }
+  if (type === 'automated') {
+    colorClass = 'text-theme-medium border-theme-medium hover:bg-theme-medium/5 hover:shadow-[0_0_30px_rgba(245,158,11,0.15)]';
+    description = 'Low Value + High Risk';
+  }
+  if (type === 'normal') {
+    colorClass = 'text-theme-primary border-theme-primary hover:bg-theme-primary/5 hover:shadow-[0_0_30px_rgba(59,130,246,0.15)]';
+    description = 'Low Value + Low Risk';
+  }
 
   return (
     <div 
       onClick={onClick}
-      className={`dashboard-card p-4 md:p-8 flex flex-col justify-center items-center text-center cursor-pointer transition-all duration-300 border-2 ${colorClass}`}
+      className={`dashboard-card p-6 md:p-12 flex flex-col justify-center items-center text-center cursor-pointer transition-all duration-300 border-2 ${colorClass}`}
     >
-      <h3 className="text-sm md:text-xl font-bold mb-2 leading-tight">{title}</h3>
-      <p className="text-2xl md:text-4xl font-black">{count.toLocaleString()}</p>
-      <p className="text-xs md:text-sm mt-1 opacity-80">customers</p>
+      <h3 className="text-xl md:text-3xl font-black mb-3 tracking-tight">{title}</h3>
+      <p className="text-4xl md:text-6xl font-black mb-2">{count.toLocaleString()}</p>
+      <p className="text-sm md:text-base font-bold uppercase tracking-widest opacity-80 mb-4">Customers</p>
+      <div className="mt-auto pt-4 border-t border-current/20 w-full">
+        <p className="text-sm md:text-lg font-medium opacity-90">{description}</p>
+      </div>
     </div>
   );
 };
@@ -70,46 +85,46 @@ const Segmentation = () => {
   };
 
   return (
-    <div className="space-y-8 animate-fade-in">
+    <div className="space-y-10 w-full animate-fade-in">
       
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-extrabold text-theme-text1 tracking-tight">Customer Segmentation</h1>
-        <p className="text-theme-text2 mt-1">Understand customer value and behavioural segments.</p>
+        <h1 className="text-4xl md:text-5xl font-black text-theme-text1 tracking-tight">Customer Segmentation</h1>
+        <p className="text-theme-text2 mt-2 text-lg">Understand customer value and behavioural segments.</p>
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="dashboard-card p-6">
-          <p className="text-sm font-semibold text-theme-muted uppercase tracking-wider mb-1">High Value Customers</p>
-          <p className="text-3xl font-bold text-theme-text1">{highValueCount.toLocaleString()}</p>
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+        <div className="dashboard-card p-6 flex flex-col justify-between">
+          <p className="text-xs font-bold text-theme-muted uppercase tracking-widest mb-2">High Value Customers</p>
+          <p className="text-4xl font-black text-theme-text1">{highValueCount.toLocaleString()}</p>
         </div>
-        <div className="dashboard-card p-6">
-          <p className="text-sm font-semibold text-theme-muted uppercase tracking-wider mb-1">Low Value Customers</p>
-          <p className="text-3xl font-bold text-theme-text1">{lowValueCount.toLocaleString()}</p>
+        <div className="dashboard-card p-6 flex flex-col justify-between">
+          <p className="text-xs font-bold text-theme-muted uppercase tracking-widest mb-2">Low Value Customers</p>
+          <p className="text-4xl font-black text-theme-text1">{lowValueCount.toLocaleString()}</p>
         </div>
-        <div className="dashboard-card p-6">
-          <p className="text-sm font-semibold text-theme-muted uppercase tracking-wider mb-1">Priority Retain</p>
-          <p className="text-3xl font-bold text-theme-high">{priorityCount.toLocaleString()}</p>
+        <div className="dashboard-card p-6 flex flex-col justify-between border-b-4 border-theme-high">
+          <p className="text-xs font-bold text-theme-muted uppercase tracking-widest mb-2">Priority Retain</p>
+          <p className="text-4xl font-black text-theme-high">{priorityCount.toLocaleString()}</p>
         </div>
-        <div className="dashboard-card p-6">
-          <p className="text-sm font-semibold text-theme-muted uppercase tracking-wider mb-1">VIP Loyal</p>
-          <p className="text-3xl font-bold text-theme-low">{vipCount.toLocaleString()}</p>
+        <div className="dashboard-card p-6 flex flex-col justify-between border-b-4 border-theme-low">
+          <p className="text-xs font-bold text-theme-muted uppercase tracking-widest mb-2">VIP Loyal</p>
+          <p className="text-4xl font-black text-theme-low">{vipCount.toLocaleString()}</p>
         </div>
       </div>
 
       {/* Risk x Value Matrix */}
       <div className="pt-8">
-        <div className="flex flex-col max-w-5xl mx-auto">
+        <div className="flex flex-col w-full mx-auto">
           
           {/* Top axis labels */}
-          <div className="flex mb-4">
-            <div className="w-24"></div> {/* spacer for left axis */}
+          <div className="flex mb-6">
+            <div className="w-16 md:w-32"></div> {/* spacer for left axis */}
             <div className="flex-1 flex flex-col items-center">
-              <h4 className="text-theme-muted font-bold tracking-widest uppercase mb-2">Churn Risk</h4>
+              <h4 className="text-theme-muted font-black tracking-widest uppercase mb-4 text-xl">Churn Risk</h4>
               <div className="flex w-full">
-                <div className="flex-1 text-center font-semibold text-theme-low">LOW</div>
-                <div className="flex-1 text-center font-semibold text-theme-high">HIGH</div>
+                <div className="flex-1 text-center font-black text-theme-low text-xl md:text-2xl tracking-widest">LOW</div>
+                <div className="flex-1 text-center font-black text-theme-high text-xl md:text-2xl tracking-widest">HIGH</div>
               </div>
             </div>
           </div>
@@ -117,17 +132,17 @@ const Segmentation = () => {
           {/* Matrix Body */}
           <div className="flex">
             {/* Left axis labels */}
-            <div className="w-24 flex flex-col justify-around py-16">
-              <div className="text-right pr-4 font-semibold text-theme-accent2 whitespace-pre-line leading-tight">
+            <div className="w-16 md:w-32 flex flex-col justify-around py-16">
+              <div className="text-right pr-4 md:pr-8 font-black text-theme-accent2 text-xl md:text-2xl whitespace-pre-line leading-tight tracking-widest">
                 HIGH{'\n'}VALUE
               </div>
-              <div className="text-right pr-4 font-semibold text-theme-muted whitespace-pre-line leading-tight">
+              <div className="text-right pr-4 md:pr-8 font-black text-theme-muted text-xl md:text-2xl whitespace-pre-line leading-tight tracking-widest">
                 LOW{'\n'}VALUE
               </div>
             </div>
             
             {/* 2x2 Grid */}
-            <div className="flex-1 grid grid-cols-2 gap-4">
+            <div className="flex-1 grid grid-cols-2 gap-6">
               <Quadrant title="VIP Loyal" count={vipCount} type="vip" onClick={() => handleQuadrantClick('VIP Loyal')} />
               <Quadrant title="Priority Retain" count={priorityCount} type="priority" onClick={() => handleQuadrantClick('Priority Retain')} />
               

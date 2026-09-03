@@ -15,6 +15,7 @@ export default {
           border: 'var(--color-border)',
           accent1: 'var(--color-accent1)',
           accent2: 'var(--color-accent2)',
+          primary: 'var(--color-primary)',
           text1: 'var(--color-text1)',
           text2: 'var(--color-text2)',
           muted: 'var(--color-muted)',

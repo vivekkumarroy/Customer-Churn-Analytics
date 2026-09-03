@@ -26,7 +26,7 @@ const Topbar = ({ setIsMobileMenuOpen }) => {
   };
 
   return (
-    <header className="bg-theme-bg border-b border-theme-border h-16 flex items-center justify-between px-4 md:px-6 sticky top-0 z-10">
+    <header className="bg-theme-bg border-b border-theme-border h-20 flex items-center justify-between px-4 md:px-8 sticky top-0 z-10">
       <div className="flex items-center md:hidden">
         <button onClick={() => setIsMobileMenuOpen(true)} className="p-2 -ml-2 text-theme-text2 hover:text-theme-text1 focus:outline-none">
           <Menu size={24} />
@@ -34,7 +34,7 @@ const Topbar = ({ setIsMobileMenuOpen }) => {
       </div>
       
       <div className="flex-1 flex justify-end">
-        <div className="relative w-full md:w-72">
+        <div className="relative w-full md:w-96">
           <form onSubmit={handleSearch}>
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
             <Search size={16} className="text-theme-muted" />

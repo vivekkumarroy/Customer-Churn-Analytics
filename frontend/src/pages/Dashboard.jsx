@@ -96,29 +96,29 @@ const Dashboard = () => {
   const prioritySegment = segments.find(s => s.segment_name === 'Priority Retain');
 
   return (
-    <div className="space-y-8 animate-fade-in">
+    <div className="space-y-10 w-full animate-fade-in">
 
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-extrabold text-theme-text1 tracking-tight">Customer Churn Intelligence</h1>
-        <p className="text-theme-text2 mt-1">AI-powered customer retention and lifetime value analytics</p>
-        <div className="flex items-center gap-2 mt-4 text-xs font-semibold px-3 py-1 bg-theme-bg2 border border-theme-border rounded-full w-max">
-          <div className="w-2 h-2 rounded-full bg-theme-low animate-pulse" />
-          <span className="text-theme-text2 tracking-widest">ML MODEL ACTIVE</span>
+        <h1 className="text-4xl md:text-5xl font-black text-theme-text1 tracking-tight">Customer Churn Intelligence</h1>
+        <p className="text-theme-text2 mt-2 text-lg">AI-powered customer retention and lifetime value analytics</p>
+        <div className="flex items-center gap-3 mt-6 text-xs font-bold px-4 py-1.5 bg-theme-bg/50 border border-theme-border rounded-full w-max shadow-sm">
+          <div className="w-2.5 h-2.5 rounded-full bg-theme-low shadow-[0_0_8px_var(--color-low)] animate-pulse" />
+          <span className="text-theme-text2 tracking-widest uppercase">ML Model Active</span>
         </div>
       </div>
 
       {/* KPI Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-5 gap-6">
-        <MetricCard title="Total Customers" value={metrics.total_customers.toLocaleString()} subtitle="Customers analysed" icon={Users} />
+        <MetricCard title="Total Customers" value={metrics.total_customers.toLocaleString()} subtitle="Active customer base" icon={Users} />
         <MetricCard title="Total Revenue" value={Intl.NumberFormat('en-IN', { notation: 'compact', style: 'currency', currency: 'INR', maximumFractionDigits: 1 }).format(metrics.total_revenue)} subtitle="Across all customers" icon={IndianRupee} />
-        <MetricCard title="Churn Rate" value={`${(metrics.churn_rate * 100).toFixed(1)}%`} subtitle="Predicted churn risk" icon={Activity} />
+        <MetricCard title="Avg Churn Rate" value={`${(metrics.churn_rate * 100).toFixed(1)}%`} subtitle="Predicted risk across base" icon={Activity} />
         <MetricCard title="High-Risk Customers" value={metrics.high_risk_customers.toLocaleString()} subtitle="Require immediate attention" icon={AlertTriangle} />
         <MetricCard title="High-Value Customers" value={metrics.high_value_customers.toLocaleString()} subtitle="Top revenue contributors" icon={ShieldCheck} />
       </div>
 
       {/* Charts Grid */}
-      <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
 
         {/* Chart 1: Churn Donut */}
         <div className="dashboard-card p-6">
@@ -136,8 +136,8 @@ const Dashboard = () => {
               </PieChart>
             </ResponsiveContainer>
             <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none pb-4">
-              <span className="text-2xl font-bold text-theme-text1">{(churned / totalChurn * 100).toFixed(1)}%</span>
-              <span className="text-xs text-theme-text2 uppercase tracking-wider">Churn</span>
+              <span className="text-3xl font-black text-theme-text1">{(churned / totalChurn * 100).toFixed(1)}%</span>
+              <span className="text-sm font-bold text-theme-muted uppercase tracking-wider">Churn</span>
             </div>
           </div>
         </div>
@@ -221,22 +221,28 @@ const Dashboard = () => {
 
       {/* Business Insight Section */}
       {prioritySegment && (
-        <div className="bg-theme-bg2 border border-theme-accent1/30 rounded-xl p-8 relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-1 h-full bg-theme-accent1"></div>
-          <h3 className="text-xl font-bold text-theme-text1 mb-4">Business Priority</h3>
-          <p className="text-theme-text2 text-lg mb-6 max-w-3xl">
+        <div className="bg-theme-bg border border-theme-primary/30 rounded-2xl p-8 relative overflow-hidden shadow-[0_0_40px_rgba(59,130,246,0.1)]">
+          <div className="absolute top-0 left-0 w-2 h-full bg-theme-primary"></div>
+          <div className="absolute top-0 right-0 w-64 h-64 bg-theme-primary opacity-5 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+          
+          <h3 className="text-2xl font-black text-theme-text1 mb-3 tracking-tight">Business Priority: Retention Action Required</h3>
+          <p className="text-theme-text2 text-lg mb-8 max-w-4xl leading-relaxed">
             High-value customers with high churn risk should be prioritized for retention campaigns.
-            Addressing this segment protects maximum revenue.
+            Addressing this exact segment protects maximum potential revenue loss.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-widest text-theme-muted mb-1">Priority Retain Customers</p>
-              <p className="text-3xl font-bold text-theme-high">{prioritySegment.customer_count.toLocaleString()}</p>
+            <div className="bg-theme-card p-6 rounded-xl border border-theme-border">
+              <p className="text-sm font-bold uppercase tracking-widest text-theme-muted mb-2 flex items-center gap-2">
+                <AlertTriangle size={16} className="text-theme-high" /> Priority Retain Customers
+              </p>
+              <p className="text-5xl font-black text-theme-high">{prioritySegment.customer_count.toLocaleString()}</p>
             </div>
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-widest text-theme-muted mb-1">Estimated Customer Value</p>
-              <p className="text-3xl font-bold text-theme-text1">{Intl.NumberFormat('en-IN', { notation: 'compact', style: 'currency', currency: 'INR', maximumFractionDigits: 1 }).format(prioritySegment.total_revenue)}</p>
+            <div className="bg-theme-card p-6 rounded-xl border border-theme-border">
+              <p className="text-sm font-bold uppercase tracking-widest text-theme-muted mb-2 flex items-center gap-2">
+                <IndianRupee size={16} className="text-theme-primary" /> Estimated Customer Value
+              </p>
+              <p className="text-5xl font-black text-theme-text1 tracking-tight">{Intl.NumberFormat('en-IN', { notation: 'compact', style: 'currency', currency: 'INR', maximumFractionDigits: 1 }).format(prioritySegment.total_revenue)}</p>
             </div>
           </div>
         </div>

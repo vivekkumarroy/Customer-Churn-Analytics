@@ -6,16 +6,17 @@
 
 @layer base {
   :root {
-    --color-bg: #0A192F;
-    --color-bg2: #112240;
-    --color-card: #112240;
-    --color-card-hover: #112240;
-    --color-border: #233554;
+    --color-bg: #080D1A;
+    --color-bg2: #111827;
+    --color-card: #111827;
+    --color-card-hover: #1E293B;
+    --color-border: #1E293B;
     --color-accent1: #06B6D4;
     --color-accent2: #8B5CF6;
+    --color-primary: #3B82F6;
     --color-text1: #F8FAFC;
-    --color-text2: #CBD5E1;
-    --color-muted: #8892B0;
+    --color-text2: #94A3B8;
+    --color-muted: #64748B;
     --color-high: #EF4444;
     --color-medium: #F59E0B;
     --color-low: #22C55E;
@@ -49,11 +50,11 @@
 
 @layer components {
   .dashboard-card {
-    @apply bg-theme-card border border-theme-border rounded-xl transition-all duration-200 shadow-sm;
+    @apply bg-theme-card border border-theme-border rounded-2xl transition-all duration-300 shadow-sm;
   }
 
   .dashboard-card:hover {
-    @apply bg-theme-card-hover border-cyan-500/30 shadow-md transform -translate-y-0.5;
+    @apply bg-theme-card-hover border-theme-primary/30 shadow-lg transform -translate-y-1;
   }
 
   .nav-item {
@@ -65,11 +66,11 @@
   }
 
   .nav-item.active {
-    @apply bg-cyan-500/10 text-theme-accent1 border border-cyan-500/20 shadow-[inset_4px_0_0_0_#06B6D4];
+    @apply bg-theme-primary/10 text-theme-primary font-bold shadow-[inset_4px_0_0_0_var(--color-primary)];
   }
 
   .input-search {
-    @apply bg-theme-bg2 border border-theme-border rounded-lg text-theme-text1 px-4 py-2 text-sm focus:outline-none focus:border-theme-accent1 focus:ring-1 focus:ring-theme-accent1 transition-all w-full;
+    @apply bg-theme-bg border border-theme-border rounded-xl text-theme-text1 px-4 py-2.5 text-sm focus:outline-none focus:border-theme-primary focus:ring-1 focus:ring-theme-primary transition-all w-full;
   }
 
   .input-form {

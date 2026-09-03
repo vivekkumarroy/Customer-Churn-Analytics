@@ -115,45 +115,45 @@ const ChurnAnalysis = () => {
   };
 
   return (
-    <div className="space-y-8 animate-fade-in pb-10">
+    <div className="space-y-10 w-full animate-fade-in pb-10">
       
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-extrabold text-theme-text1 tracking-tight">Churn Intelligence</h1>
-        <p className="text-theme-text2 mt-1">Identify customers requiring retention attention.</p>
+        <h1 className="text-4xl md:text-5xl font-black text-theme-text1 tracking-tight">Churn Intelligence</h1>
+        <p className="text-theme-text2 mt-2 text-lg">Identify customers requiring retention attention.</p>
       </div>
 
       {/* Top Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="dashboard-card p-6 text-center border-t-4 border-t-theme-high">
-          <p className="text-sm font-semibold text-theme-muted uppercase tracking-wider mb-2">High Risk Customers</p>
+        <div className="dashboard-card p-6 flex flex-col justify-between border-t-4 border-theme-high">
+          <p className="text-xs font-bold text-theme-muted uppercase tracking-widest mb-2">High Risk Customers</p>
           <p className="text-4xl font-black text-theme-high">{(riskDist['HIGH'] || 0).toLocaleString()}</p>
         </div>
-        <div className="dashboard-card p-6 text-center border-t-4 border-t-theme-medium">
-          <p className="text-sm font-semibold text-theme-muted uppercase tracking-wider mb-2">Medium Risk Customers</p>
+        <div className="dashboard-card p-6 flex flex-col justify-between border-t-4 border-theme-medium">
+          <p className="text-xs font-bold text-theme-muted uppercase tracking-widest mb-2">Medium Risk Customers</p>
           <p className="text-4xl font-black text-theme-medium">{(riskDist['MEDIUM'] || 0).toLocaleString()}</p>
         </div>
-        <div className="dashboard-card p-6 text-center border-t-4 border-t-theme-low">
-          <p className="text-sm font-semibold text-theme-muted uppercase tracking-wider mb-2">Low Risk Customers</p>
+        <div className="dashboard-card p-6 flex flex-col justify-between border-t-4 border-theme-low">
+          <p className="text-xs font-bold text-theme-muted uppercase tracking-widest mb-2">Low Risk Customers</p>
           <p className="text-4xl font-black text-theme-low">{(riskDist['LOW'] || 0).toLocaleString()}</p>
         </div>
-        <div className="dashboard-card p-6 text-center border-t-4 border-t-theme-accent1">
-          <p className="text-sm font-semibold text-theme-muted uppercase tracking-wider mb-2">Predicted Churn</p>
-          <p className="text-4xl font-black text-theme-accent1">{churned.toLocaleString()}</p>
+        <div className="dashboard-card p-6 flex flex-col justify-between border-t-4 border-theme-primary">
+          <p className="text-xs font-bold text-theme-muted uppercase tracking-widest mb-2">Predicted Churn</p>
+          <p className="text-4xl font-black text-theme-primary">{churned.toLocaleString()}</p>
         </div>
       </div>
 
       {/* Risk Distribution Chart */}
       <div className="dashboard-card p-6">
-        <h3 className="text-lg font-bold text-theme-text1 mb-6">Risk Distribution</h3>
-        <div className="h-48 max-w-3xl">
+        <h3 className="text-xl font-bold text-theme-text1 mb-6">Risk Distribution</h3>
+        <div className="h-64 w-full">
           <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={riskBarData} layout="vertical" margin={{ top: 0, right: 30, left: 20, bottom: 0 }}>
+            <BarChart data={riskBarData} layout="vertical" margin={{ top: 0, right: 30, left: 40, bottom: 0 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#1E293B" horizontal={false} />
               <XAxis type="number" stroke="#64748B" tickLine={false} axisLine={false} />
-              <YAxis type="category" dataKey="name" stroke="#94A3B8" tickLine={false} axisLine={false} width={80} />
-              <Tooltip cursor={{fill: '#1E293B'}} contentStyle={{backgroundColor: '#111827', borderColor: '#1E293B'}} itemStyle={{color: '#F8FAFC'}} />
-              <Bar dataKey="count" radius={[0, 4, 4, 0]}>
+              <YAxis type="category" dataKey="name" stroke="#94A3B8" fontWeight="bold" tickLine={false} axisLine={false} width={100} />
+              <Tooltip cursor={{fill: '#1E293B'}} contentStyle={{backgroundColor: '#111827', borderColor: '#1E293B', borderRadius: '8px'}} itemStyle={{color: '#F8FAFC', fontWeight: 'bold'}} />
+              <Bar dataKey="count" radius={[0, 8, 8, 0]}>
                 {riskBarData.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={entry.fill} />
                 ))}
@@ -204,9 +204,9 @@ const ChurnAnalysis = () => {
 
         {/* Table */}
         <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse">
+          <table className="w-full text-left border-collapse whitespace-nowrap">
             <thead>
-              <tr>
+              <tr className="bg-theme-bg">
                 <th className="table-header cursor-pointer group" onClick={() => handleSort('CustomerID')}>
                   Customer ID <SortIcon field="CustomerID" />
                 </th>
@@ -227,25 +227,25 @@ const ChurnAnalysis = () => {
             <tbody>
               {paginated.length > 0 ? paginated.map((c, idx) => (
                 <tr key={idx} className="table-row">
-                  <td className="table-cell font-semibold text-theme-accent1">
+                  <td className="table-cell font-bold text-theme-primary">
                     <Link to={`/customer-lookup?id=${c.CustomerID}`} className="hover:underline">{c.CustomerID}</Link>
                   </td>
                   <td className="table-cell">
                     <div className="flex items-center gap-2">
-                      <span className="font-semibold text-theme-text1">{(c.ChurnProbability * 100).toFixed(2)}%</span>
+                      <span className="font-bold text-theme-text1 text-base">{(c.ChurnProbability * 100).toFixed(2)}%</span>
                     </div>
                   </td>
                   <td className="table-cell"><RiskBadge risk={c.RiskLevel} /></td>
-                  <td className="table-cell font-medium text-theme-text1">
+                  <td className="table-cell font-bold text-theme-text1 text-base">
                     ₹{Number(c.EstimatedCLV).toLocaleString(undefined, {maximumFractionDigits:0})}
                   </td>
-                  <td className="table-cell text-theme-text2">{c.ValueLevel}</td>
+                  <td className="table-cell font-semibold text-theme-muted">{c.ValueLevel}</td>
                   <td className="table-cell"><SegmentBadge segment={c.RiskValueSegment} /></td>
-                  <td className="table-cell text-xs text-theme-text2">{c.RecommendedAction}</td>
+                  <td className="table-cell text-sm font-semibold text-theme-text2">{c.RecommendedAction}</td>
                 </tr>
               )) : (
                 <tr>
-                  <td colSpan="7" className="table-cell text-center py-12 text-theme-muted">
+                  <td colSpan="7" className="table-cell text-center py-16 text-theme-muted text-lg">
                     No customers match the current filters.
                   </td>
                 </tr>

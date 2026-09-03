@@ -5,7 +5,7 @@ import api from '../api';
 import { RiskBadge, SegmentBadge } from '../components/UIComponents';
 
 const CircularGauge = ({ percentage }) => {
-  const radius = 70;
+  const radius = 100;
   const circumference = 2 * Math.PI * radius;
   const strokeDashoffset = circumference - (percentage / 100) * circumference;
 
@@ -20,28 +20,29 @@ const CircularGauge = ({ percentage }) => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center p-6 bg-theme-bg2 rounded-2xl border border-theme-border shadow-md">
-      <h3 className="text-theme-muted font-bold tracking-widest uppercase mb-6 flex items-center gap-2">
-        <ShieldAlert size={18} /> Churn Probability
+    <div className="flex flex-col items-center justify-center p-8 bg-theme-bg2 rounded-3xl border border-theme-border shadow-lg relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-32 h-32 opacity-10 rounded-full blur-2xl pointer-events-none" style={{ backgroundColor: color }}></div>
+      <h3 className="text-theme-muted font-black tracking-widest uppercase mb-8 flex items-center gap-2 text-lg">
+        <ShieldAlert size={20} /> Churn Probability
       </h3>
-      <div className="relative w-48 h-48">
+      <div className="relative w-64 h-64">
         <svg className="w-full h-full transform -rotate-90">
-          <circle cx="96" cy="96" r={radius} stroke="#1E293B" strokeWidth="12" fill="transparent" />
+          <circle cx="128" cy="128" r={radius} stroke="#1E293B" strokeWidth="16" fill="transparent" />
           <circle
-            cx="96" cy="96" r={radius}
+            cx="128" cy="128" r={radius}
             stroke={color}
-            strokeWidth="12"
+            strokeWidth="16"
             fill="transparent"
             strokeDasharray={circumference}
             strokeDashoffset={strokeDashoffset}
             strokeLinecap="round"
-            className="transition-all duration-1000 ease-out"
-            style={{ filter: `drop-shadow(0 0 8px ${color}50)` }}
+            className="transition-all duration-1000 ease-out drop-shadow-xl"
+            style={{ filter: `drop-shadow(0 0 12px ${color}80)` }}
           />
         </svg>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <span className="text-4xl font-black text-theme-text1 tracking-tighter">{percentage.toFixed(0)}<span className="text-xl text-theme-text2">%</span></span>
-          <span className="text-xs font-bold mt-1" style={{ color }}>{riskText}</span>
+          <span className="text-6xl font-black text-theme-text1 tracking-tighter">{percentage.toFixed(0)}<span className="text-3xl text-theme-text2">%</span></span>
+          <span className="text-sm font-black mt-2 tracking-widest" style={{ color }}>{riskText}</span>
         </div>
       </div>
     </div>
@@ -107,13 +108,14 @@ const CustomerLookup = () => {
     <div className="space-y-6 animate-fade-in pb-12 max-w-7xl mx-auto">
 
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 bg-theme-bg2 border border-theme-border p-6 rounded-2xl shadow-sm">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 bg-theme-bg border border-theme-border p-8 rounded-3xl shadow-lg relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-2 h-full bg-theme-primary"></div>
         <div>
-          <div className="flex items-center gap-3 mb-1">
-            <div className="px-2 py-0.5 bg-cyan-500/10 text-cyan-400 rounded text-xs font-bold tracking-widest uppercase">Customer Profile</div>
+          <div className="flex items-center gap-3 mb-2">
+            <div className="px-3 py-1 bg-theme-primary/10 text-theme-primary rounded-md text-xs font-black tracking-widest uppercase border border-theme-primary/20">Customer Intelligence</div>
           </div>
-          <h1 className="text-3xl font-black text-theme-text1 tracking-tighter">
-            #{customer.CustomerID}
+          <h1 className="text-4xl md:text-5xl font-black text-theme-text1 tracking-tighter">
+            CUSTOMER PROFILE <span className="text-theme-primary opacity-80">#{customer.CustomerID}</span>
           </h1>
         </div>
         <button
@@ -125,7 +127,7 @@ const CustomerLookup = () => {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
 
         {/* Pillar 1: Risk & Action */}
         <div className="space-y-6">
@@ -149,10 +151,11 @@ const CustomerLookup = () => {
             </div>
           </div>
 
-          <div className="bg-purple-900/20 border border-purple-500/30 rounded-2xl p-6 shadow-sm relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-24 h-24 bg-purple-500/10 rounded-full blur-xl"></div>
-            <h3 className="text-sm font-bold text-purple-400 uppercase tracking-widest mb-2">Recommended Action</h3>
-            <p className="text-lg font-bold text-theme-text1">{customer.RecommendedAction}</p>
+          <div className="bg-purple-900/20 border-2 border-purple-500/60 rounded-3xl p-8 shadow-[0_0_30px_rgba(168,85,247,0.2)] relative overflow-hidden transform transition-all hover:scale-[1.02]">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/20 rounded-full blur-3xl pointer-events-none"></div>
+            <div className="absolute top-0 left-0 w-1 h-full bg-purple-500"></div>
+            <h3 className="text-sm font-black text-purple-400 uppercase tracking-widest mb-3 flex items-center gap-2"><Brain size={16}/> Recommended Action</h3>
+            <p className="text-2xl font-black text-theme-text1 leading-tight">{customer.RecommendedAction}</p>
           </div>
         </div>
 

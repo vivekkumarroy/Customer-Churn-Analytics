@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const MetricCard = ({ title, value, subtitle, icon: Icon }) => (
-  <div className="dashboard-card p-4 sm:p-5 flex flex-col justify-between min-h-[160px] group relative overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+  <div className="dashboard-card p-4 sm:p-5 flex flex-col justify-between min-h-[140px] sm:min-h-[160px] group relative overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
     <div className="absolute -right-4 -top-4 text-theme-bg opacity-30 transform rotate-12 group-hover:scale-110 transition-transform duration-500 pointer-events-none">
       {Icon && <Icon size={100} strokeWidth={1} />}
     </div>

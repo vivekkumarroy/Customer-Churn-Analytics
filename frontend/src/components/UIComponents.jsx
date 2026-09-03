@@ -5,10 +5,10 @@ export const MetricCard = ({ title, value, subtitle, icon: Icon }) => (
     <div className="absolute -right-6 -top-6 text-theme-bg opacity-50 transform rotate-12 group-hover:scale-110 transition-transform duration-500 pointer-events-none">
       {Icon && <Icon size={120} strokeWidth={1} />}
     </div>
-    <div className="flex justify-between items-start mb-6 relative z-10 gap-3">
-      <div className="min-w-0 flex-1">
-        <p className="text-[10px] md:text-xs font-bold text-theme-muted uppercase tracking-widest mb-2 truncate" title={title}>{title}</p>
-        <h3 className="text-3xl lg:text-4xl font-black text-theme-text1 leading-none tracking-tight truncate" title={String(value)}>{value}</h3>
+    <div className="flex justify-between items-start mb-6 relative z-10 gap-2">
+      <div className="flex-1">
+        <p className="text-[10px] md:text-xs font-bold text-theme-muted uppercase tracking-widest mb-2 leading-tight">{title}</p>
+        <h3 className="text-2xl lg:text-3xl xl:text-4xl font-black text-theme-text1 leading-none tracking-tight break-words" title={String(value)}>{value}</h3>
       </div>
       <div className="p-3 bg-theme-bg rounded-xl text-theme-primary shadow-inner border border-theme-border/50 group-hover:bg-[#3B82F6]/20 transition-colors shrink-0">
         {Icon && <Icon size={24} strokeWidth={2} />}

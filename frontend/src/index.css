@@ -54,7 +54,7 @@
   }
 
   .dashboard-card:hover {
-    @apply bg-theme-card-hover border-theme-primary/30 shadow-lg transform -translate-y-1;
+    @apply bg-theme-card-hover border-theme-primary shadow-lg transform -translate-y-1;
   }
 
   .nav-item {

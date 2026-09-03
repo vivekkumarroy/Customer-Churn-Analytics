@@ -109,7 +109,7 @@ const Dashboard = () => {
       </div>
 
       {/* KPI Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-5 gap-6">
+      <div className="grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 gap-4 md:gap-6">
         <MetricCard title="Total Customers" value={metrics.total_customers.toLocaleString()} subtitle="Active customer base" icon={Users} />
         <MetricCard title="Total Revenue" value={Intl.NumberFormat('en-IN', { notation: 'compact', style: 'currency', currency: 'INR', maximumFractionDigits: 1 }).format(metrics.total_revenue)} subtitle="Across all customers" icon={IndianRupee} />
         <MetricCard title="Avg Churn Rate" value={`${(metrics.churn_rate * 100).toFixed(1)}%`} subtitle="Predicted risk across base" icon={Activity} />
